@@ -18,7 +18,7 @@ class _NotePageState extends State<NotePage> {
         centerTitle: true,
       ),
       body: Padding(
-        padding: const EdgeInsets.only(left: 10,right: 10),
+        padding: const EdgeInsets.only(left: 10, right: 10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -26,8 +26,7 @@ class _NotePageState extends State<NotePage> {
                 flex: 8,
                 child: StreamBuilder(
                   stream: item.snapshots(),
-                  builder:
-                      (context, AsyncSnapshot<QuerySnapshot> streamSnapshot) {
+                  builder: (context, AsyncSnapshot<QuerySnapshot> streamSnapshot) {
                     if (streamSnapshot.hasData) {
                       return ListView.builder(
                           itemCount: streamSnapshot.data!.docs.length,
@@ -40,7 +39,26 @@ class _NotePageState extends State<NotePage> {
                                 title: Text(
                                   documentSnapshot['name'],
                                   style: const TextStyle(
-                                      fontWeight: FontWeight.w600, fontSize: 17),
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 17),
+                                ),
+                                subtitle: Text(
+                                  '\u{2089}${(documentSnapshot['price']).toString()}',
+                                  style: TextStyle(
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.w500),
+                                ),
+                                trailing: SizedBox(
+                                  width: 100,
+                                  child: Row(
+                                    children: [
+                                      IconButton(onPressed: (){},
+                                          icon: Icon(Icons.edit)),
+                                      IconButton(onPressed: (){},
+                                          icon: Icon(Icons.delete)),
+
+                                    ],
+                                  ),
                                 ),
                               ),
                             );
