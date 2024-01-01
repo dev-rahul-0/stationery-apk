@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
@@ -16,6 +18,7 @@ class _NotePageState extends State<NotePage> {
 
   Future<void> _create() async {
     await showModalBottomSheet(
+      isScrollControlled: true,
         context: context,
         builder: (BuildContext context) {
           return Padding(
@@ -78,6 +81,7 @@ class _NotePageState extends State<NotePage> {
       }
     {
       await showModalBottomSheet(
+        isScrollControlled: true,
           context: context,
           builder: (BuildContext context) {
             return Padding(
