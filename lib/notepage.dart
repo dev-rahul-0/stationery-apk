@@ -1,4 +1,5 @@
-import 'dart:js_interop';
+
+import 'dart:html';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -155,8 +156,22 @@ class _NotePageState extends State<NotePage> {
   final CollectionReference item =
   FirebaseFirestore.instance.collection('Stationery');
 
+
   @override
   Widget build(BuildContext context) {
+    showDialog
+      (
+        context: context,
+        builder: (BuildContext context){
+          return AlertDialog(
+              title: Text("Total Price"),
+              content: Text('\u{20B9}${totalPrice.toInt()}'),
+              actions: [
+              TextButton(onPressed: (){Navigator.of(context).pop();}, child: Text('Close'),),
+          ],
+          );
+        }
+    );
   return Scaffold(
   appBar: AppBar(
   backgroundColor: Colors.redAccent,
