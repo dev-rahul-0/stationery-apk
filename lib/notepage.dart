@@ -1,5 +1,4 @@
 
-import 'dart:html';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -137,15 +136,6 @@ class _NotePageState extends State<NotePage> {
   });
   }
   }
-  Future<void> _calculateTotalPrice() async{
-  QuerySnapshot querySnapshot = await item.get();
-  int totalPrice = 0;
-  querySnapshot.docs.forEach((itprice)
-  {
-  totalPrice = totalPrice + (itprice['price'] as num).toInt();
-  }
-  );
-  }
   Future<void> _delete(String productId) async{
   await item.doc(productId).delete();
   ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
@@ -159,19 +149,28 @@ class _NotePageState extends State<NotePage> {
 
   @override
   Widget build(BuildContext context) {
-    showDialog
-      (
-        context: context,
-        builder: (BuildContext context){
-          return AlertDialog(
+    Future<void> _calculateTotalPrice() async{
+      QuerySnapshot querySnapshot = await item.get();
+      int totalPrice = 0;
+      querySnapshot.docs.forEach((itprice)
+      {
+        totalPrice = totalPrice + (itprice['price'] as num).toInt();
+      }
+      );
+      showDialog(
+          context: context,
+          builder: (BuildContext context){
+            return AlertDialog(
               title: Text("Total Price"),
               content: Text('\u{20B9}${totalPrice.toInt()}'),
               actions: [
-              TextButton(onPressed: (){Navigator.of(context).pop();}, child: Text('Close'),),
-          ],
-          );
-        }
-    );
+                TextButton(onPressed: (){Navigator.of(context).pop();}, child: Text('Close'),),
+              ],
+            );
+          }
+      );
+    }
+
   return Scaffold(
   appBar: AppBar(
   backgroundColor: Colors.redAccent,
