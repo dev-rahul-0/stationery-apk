@@ -111,11 +111,11 @@ class _NotePageState extends State<NotePage> {
                   ),
                   TextField(
                     controller: _namecontroller,
-                    decoration: const InputDecoration(labelText: "Name"),
+                    decoration: const InputDecoration(labelText: "Name"),keyboardType: TextInputType.text,
                   ),
                   TextField(
                     controller: _pricecontroller,
-                    decoration: const InputDecoration(labelText: "Price"),
+                    decoration: const InputDecoration(labelText: "Price"),keyboardType: TextInputType.number
                   ),
                   const SizedBox(
                     height: 20,
